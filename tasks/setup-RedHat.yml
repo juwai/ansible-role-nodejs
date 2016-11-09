@@ -9,13 +9,13 @@
     nodejs_rhel_rpm_dir: "pub"
   when: nodejs_version == '0.10'
 
-- name: Import Nodesource RPM key over https.
+- name: Import Nodesource RPM key with rpm_key directly.
   rpm_key:
     key: https://rpm.nodesource.com/pub/el/NODESOURCE-GPG-SIGNING-KEY-EL
     state: present
   when: not curl_nodesource_rpm
 
-- name: Download Nodesource RPM key with Curl
+- name: Download Nodesource RPM key with Curl.
   shell: curl https://rpm.nodesource.com/pub/el/NODESOURCE-GPG-SIGNING-KEY-EL -o /tmp/nodesource.gpg
   args:
     creates: /tmp/nodesource.gpg
@@ -29,12 +29,19 @@
 
 - name: Add Nodesource repositories for Node.js.
   yum:
-    name: "https://rpm.nodesource.com/{{ nodejs_rhel_rpm_dir }}/el/{{ ansible_distribution_major_version }}/{{ ansible_architecture }}/nodesource-release-el{{ ansible_distribution_major_version }}-1.noarch.rpm"
+    name: >
+      https://rpm.nodesource.com/{{ nodejs_rhel_rpm_dir }}/el/
+      {{ ansible_distribution_major_version }}/{{ ansible_architecture }}/
+      nodesource-release-el{{ ansible_distribution_major_version }}-1.noarch.rpm
     state: present
   when: not curl_nodesource_rpm
 
 - name: Download Nodesource rpm file for Node.js.
-  shell: "curl https://rpm.nodesource.com/{{ nodejs_rhel_rpm_dir }}/el/{{ ansible_distribution_major_version }}/{{ ansible_architecture }}/nodesource-release-el{{ ansible_distribution_major_version }}-1.noarch.rpm -o /tmp/nodesource.rpm"
+  shell: >
+    curl https://rpm.nodesource.com/{{ nodejs_rhel_rpm_dir }}/el/
+    {{ ansible_distribution_major_version }}/{{ ansible_architecture }}/
+    nodesource-release-el{{ ansible_distribution_major_version }}-1.noarch.rpm
+    -o /tmp/nodesource.rpm
   args:
     creates: /tmp/nodesource.rpm
   when: curl_nodesource_rpm
