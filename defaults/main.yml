@@ -19,3 +19,7 @@ nodejs_npm_global_packages: []
 #    version: 0.9.3
 #  # Install the latest stable release of a package.
 #  - name: node-sass
+
+# Import the Noesource RPM key by downloading with curl instead of using the rpm_key module directly, and then install the rpm file using curl and the yum module.
+curl_nodesource_rpm: true
+

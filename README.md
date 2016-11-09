@@ -39,6 +39,10 @@ Add a list of npm packages with a `name` and (optional) `version` to be installe
       # Install the latest stable release of a package.
       - name: node-sass
 
+Set to false to install the Nodesource repository using the rpm_key and yum modules, instead of using curl and importing the files directly. May fail due to SNI issues with CloudFront.
+
+    curl_nodesource_rpm: true
+
 ## Dependencies
 
 None.
