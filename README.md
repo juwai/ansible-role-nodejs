@@ -39,6 +39,10 @@ Add a list of npm packages with a `name` and (optional) `version` to be installe
       # Install the latest stable release of a package.
       - name: node-sass
 
+Set to true to download the gpg and rpm files with curl, instead of importing them through rpm_key/yum directly. Use only when you are encountering SNI issues with Nodesource.
+
+    curl_nodesource_rpm: false
+
 ## Dependencies
 
 None.
