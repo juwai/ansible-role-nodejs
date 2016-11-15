@@ -1,14 +1,4 @@
 ---
-- name: Set up the Nodesource RPM directory for Node.js > 0.10.
-  set_fact:
-    nodejs_rhel_rpm_dir: "pub_{{ nodejs_version }}"
-  when: nodejs_version != '0.10'
-
-- name: Set up the Nodesource RPM variable for Node.js == 0.10.
-  set_fact:
-    nodejs_rhel_rpm_dir: "pub"
-  when: nodejs_version == '0.10'
-
 - name: Import Nodesource RPM key with rpm_key directly.
   rpm_key:
     key: https://rpm.nodesource.com/pub/el/NODESOURCE-GPG-SIGNING-KEY-EL
