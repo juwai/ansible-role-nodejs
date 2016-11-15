@@ -29,14 +29,14 @@
 
 - name: Add Nodesource repositories for Node.js.
   yum:
-    name: "https://rpm.nodesource.com/{{ nodejs_rhel_rpm_dir }}/el/\
+    name: "https://rpm.nodesource.com/pub/el/\
       {{ ansible_distribution_major_version }}/{{ ansible_architecture }}/\
       nodesource-release-el{{ ansible_distribution_major_version }}-1.noarch.rpm"
     state: present
   when: not curl_nodesource_rpm
 
 - name: Download Nodesource rpm file for Node.js.
-  shell: "curl https://rpm.nodesource.com/{{ nodejs_rhel_rpm_dir }}/el/\
+  shell: "curl https://rpm.nodesource.com/pub/el/\
       {{ ansible_distribution_major_version }}/{{ ansible_architecture }}/\
       nodesource-release-el{{ ansible_distribution_major_version }}-1.noarch.rpm \
       -o /tmp/nodesource.rpm"
